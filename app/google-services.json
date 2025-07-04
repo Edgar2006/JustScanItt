@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "17969201551",
+    "firebase_url": "https://scanner-21e19-default-rtdb.firebaseio.com",
+    "project_id": "scanner-21e19",
+    "storage_bucket": "scanner-21e19.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17969201551:android:6c40bd84111c1d7c168bfa",
+        "android_client_info": {
+          "package_name": "com.example.justscanitt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBJVTgEy8ZW_bzWgmsEmvVoCe8u8B4wLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:17969201551:android:2174d72bcb04cfe4168bfa",
+        "android_client_info": {
+          "package_name": "com.example.qr_scanner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDBJVTgEy8ZW_bzWgmsEmvVoCe8u8B4wLI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
