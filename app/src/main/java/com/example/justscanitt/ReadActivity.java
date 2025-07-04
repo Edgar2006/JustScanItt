@@ -24,9 +24,6 @@ public class ReadActivity extends AppCompatActivity {
         });
     }
 
-
-
-
     // If product bio is not found — prompt user to add one
     public void firstBio() {
         String title = "Product is not found";

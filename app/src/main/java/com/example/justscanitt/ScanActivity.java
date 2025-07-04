@@ -13,50 +13,63 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class ScanActivity extends AppCompatActivity {
+
     private String barCode = "";
+    private EditText manualInput;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
 
-    }
-    public void onCLickScanNow(View view){
-        IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.setCaptureActivity(CaptureAct.class);
-        integrator.setOrientationLocked(false);
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-        integrator.setPrompt("Scanning Code");
-        integrator.initiateScan();
+        manualInput = findViewById(R.id.manual_input); // connect EditText from XML
     }
 
-    // Called when scanner returns result
+    // Barcode scanner triggered
+    public void onCLickScanNow(View view){
+        // If manual barcode entered, use it
+        String manualCode = manualInput.getText().toString().trim();
+        if (!manualCode.isEmpty()) {
+            barCode = manualCode;
+            push_activity(); // Go directly to ReadActivity
+        } else {
+            // Else, launch scanner
+            IntentIntegrator integrator = new IntentIntegrator(this);
+            integrator.setCaptureActivity(CaptureAct.class);
+            integrator.setOrientationLocked(false);
+            integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+            integrator.setPrompt("Scanning Code");
+            integrator.initiateScan();
+        }
+    }
+
+    // Handle scanner result
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
         if(result != null){
             if(result.getContents() != null){
                 try {
-                    // Get scanned barcode and update input field
                     barCode = result.getContents();
-                    push_activity(); // Open read screen
-                }catch (Exception ignored){
+                    push_activity();
+                } catch (Exception ignored) {
                 }
             }
-        }else{
-            // Default behavior for other activities
-            super.onActivityResult(requestCode,resultCode,data);
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    // Navigate to product details
+    public void push_activity(){
+        if (barCode == null || barCode.isEmpty()) {
+            Toast.makeText(this, "No barcode provided", Toast.LENGTH_SHORT).show();
+            return;
         }
 
-    }
-
-    // Open Read activity to display product info by barcode
-    public void push_activity(){
-        Toast.makeText(this, "barCode", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(ScanActivity.this, ReadActivity.class);
+        Toast.makeText(this, "Barcode: " + barCode, Toast.LENGTH_SHORT).show();
         User.BARCODE = barCode;
+        Intent intent = new Intent(ScanActivity.this, ReadActivity.class);
         startActivity(intent);
     }
-
-
-
 }
