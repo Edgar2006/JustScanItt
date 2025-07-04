@@ -1,41 +1,45 @@
 package com.example.justscanitt;
 
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.material.textfield.TextInputLayout;
+import com.example.justscanitt.Class.User;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-
-    private EditText emailInput, nameInput;
-
-    @SuppressLint("MissingInflatedId")
+    private EditText email,name;
+    private String emailToString, nameToString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-
-        emailInput = findViewById(R.id.emailInput);
-        nameInput = findViewById(R.id.nameInput);
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        email = findViewById(R.id.emailInput);
+        name = findViewById(R.id.nameInput);
+        Log.e("1111111111111111111111","1");
     }
 
-    public void onClickSignIn(View view) {
+    public void onClickSignIn(View view){
+        emailToString = email.getText().toString();
+        Log.e("T", "_"+emailToString + "T");
+        nameToString = name.getText().toString();
+        if (!emailToString.isEmpty() && !nameToString.isEmpty()) {
+            User user;
+            user = new User(nameToString, emailToString);
+            User.NAME = nameToString;
+            User.EMAIL_CONVERT = emailToString;
+            User.EMAIL = emailToString;
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(User.EMAIL_CONVERT);
+            reference.setValue(user);
+
+            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            startActivity(intent); // Start the activity
+        }
     }
+
 }
