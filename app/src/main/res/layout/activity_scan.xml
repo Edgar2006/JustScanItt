@@ -58,4 +58,26 @@
         app:iconPadding="8dp"
         app:iconTint="@android:color/white"
         app:iconGravity="textStart" />
+
+
+    <!-- Enhanced Scan Button -->
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/scan_now"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="0dp"
+        android:backgroundTint="@color/main"
+        android:onClick="onCLickRead"
+        android:text="Scan"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="16dp"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:iconTint="@android:color/white" />
+
 </RelativeLayout>

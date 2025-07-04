@@ -4,6 +4,18 @@ public class ProductBio {
 
     private String companyEmail, companyName, productName, imageRef, bio, barCode;
 
+    @Override
+    public String toString() {
+        return "ProductBio{" +
+                "companyEmail='" + companyEmail + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", productName='" + productName + '\'' +
+                ", imageRef='" + imageRef + '\'' +
+                ", bio='" + bio + '\'' +
+                ", barCode='" + barCode + '\'' +
+                '}';
+    }
+
     public ProductBio(String companyEmail, String companyName, String productName, String imageRef, String bio, String barCode) {
         this.companyEmail = companyEmail;
         this.companyName = companyName;
@@ -60,4 +72,5 @@ public class ProductBio {
     public void setBarCode(String barCode) {
         this.barCode = barCode;
     }
+
 }
