@@ -1,5 +1,6 @@
 package com.example.justscanitt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -17,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AddProductActivity extends AppCompatActivity {
 
-    EditText ProductBioEditText, ProductNameEditText;
+    public EditText productBioEditText, productNameEditText;
 
 
     @Override
@@ -25,22 +26,18 @@ public class AddProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_product);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-        ProductNameEditText.findViewById(R.id.ProductName);
-        ProductBioEditText.findViewById(R.id.ProductBio);
-
+        productNameEditText = findViewById(R.id.newProductName);
+        productBioEditText = findViewById(R.id.newProductBio);
     }
 
     public void OnClickSetImage(View view) {
     }
 
     public void OnClickSave(View view) {
-        ProductBio productBio = new ProductBio(User.EMAIL, User.NAME, ProductNameEditText.getText().toString(), "noImage", ProductBioEditText.getText().toString(),User.BARCODE);
+        ProductBio productBio = new ProductBio(User.EMAIL, User.NAME, productNameEditText.getText().toString(), "noImage", productBioEditText.getText().toString(),User.BARCODE);
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Product_bio").child(User.BARCODE);
         reference.setValue(productBio);
+        Intent intent = new Intent(AddProductActivity.this, ReadActivity.class);
+        startActivity(intent);
     }
 }

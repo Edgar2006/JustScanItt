@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -46,16 +47,15 @@ public class ReadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_read);
         init();
         //getDataFromDataBase();
-        getDataProductDataBase();
-
+        //getDataProductDataBase();
+        //firstBio();
     }
     // Initialization of views and Firebase references
     private void init(){
         barCodeTextView = findViewById(R.id.Barcode);
         companyName = findViewById(R.id.CompanyName);
 
-        Intent intent = getIntent();
-        barCode = intent.getStringExtra("barCode");
+        barCode = User.BARCODE;
         // Firebase paths
         referenceComment = FirebaseDatabase.getInstance().getReference("Product").child(barCode);
         referenceProduct = FirebaseDatabase.getInstance().getReference("Product_bio").child(barCode);
@@ -72,53 +72,72 @@ public class ReadActivity extends AppCompatActivity {
     }
 
 
-    // Load product information
-    private void getDataProductDataBase(){
-        ValueEventListener eventListener = new ValueEventListener() {
+    private void getDataProductDataBase() {
+        referenceProduct.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                try {
-                    ProductBio productBio = snapshot.getValue(ProductBio.class);
-                    barCodeTextView.setText(barCode);
-                    companyName.setText(productBio.getCompanyName());
-                    productName.setText(productBio.getProductName());
-                    longText = productBio.getBio();
-                    bioText.setText(longText);
-                    // Load product image if exists
-                    if(!Objects.equals(productBio.getImageRef(), "noImage")) {
-                        Glide.with(getApplicationContext()).load(productBio.getImageRef()).into(productImageView);
-                    }
-                    // Load company name from user's info
-                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(productBio.getCompanyEmail());
-                    reference.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            User userNameAndImageUnit = snapshot.getValue(User.class);
-                            companyName.setText(userNameAndImageUnit.getName());
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-
+                if (snapshot.exists()) {
+                    handleProductSnapshot(snapshot);
+                } else {
+                    firstBio(); // Product not found
                 }
-                catch (Exception e){
-                    firstBio(); // If product is not found
-                }
-
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                // Optional: Log or handle
             }
-        };
-        referenceProduct.addValueEventListener(eventListener);
+        });
+    }
 
+    private void handleProductSnapshot(DataSnapshot snapshot) {
+        ProductBio productBio = snapshot.getValue(ProductBio.class);
+
+        if (productBio == null) {
+            firstBio();
+            return;
+        }
+
+        barCodeTextView.setText(barCode);
+
+        // Basic product info
+        productName.setText(productBio.getProductName());
+        longText = productBio.getBio();
+        bioText.setText(longText);
+
+        // Load image
+        if (!"noImage".equals(productBio.getImageRef())) {
+            Glide.with(getApplicationContext())
+                    .load(productBio.getImageRef())
+                    .into(productImageView);
+        }
+
+        // Load company info
+        DatabaseReference userRef = FirebaseDatabase.getInstance()
+                .getReference("User")
+                .child(productBio.getCompanyEmail());
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                if (user != null) {
+                    companyName.setText(user.getName());
+                } else {
+                    companyName.setText("Unknown Company");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Optional error handling
+            }
+        });
     }
 
     // If product bio is not found — prompt user to add one
     public void firstBio() {
+        Toast.makeText(this, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", Toast.LENGTH_SHORT).show();
         String title = "Product is not found";
         String message = "You can add product";
         String button1String = "Add now";

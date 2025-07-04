@@ -9,14 +9,14 @@
     tools:context=".AddProductActivity">
 
     <EditText
-        android:id="@+id/ProductName"
+        android:id="@+id/newProductName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Product Name" />
 
 
     <EditText
-        android:id="@+id/ProductBio"
+        android:id="@+id/newProductBio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Product Bio" />
