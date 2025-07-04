@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -17,7 +18,7 @@
         android:theme="@style/Theme.JustScanItt"
         tools:targetApi="31">
         <activity
-            android:name=".AddProductActivity"
+            android:name=".TestTranslate"
             android:exported="false" />
         <activity
             android:name=".ReadActivity"

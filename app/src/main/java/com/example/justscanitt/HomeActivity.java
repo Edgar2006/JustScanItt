@@ -17,15 +17,16 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
     }
 
     public void onCLickScan(View view) {
         Intent intent = new Intent(HomeActivity.this, ScanActivity.class);
         startActivity(intent); // Start the activity
     }
+    public void onClickTranslate(View view){
+        Intent intent = new Intent(HomeActivity.this, TestTranslate.class);
+        startActivity(intent);
+    }
+
+
 }
