@@ -1,18 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <Button
-        android:onClick="onCLickScan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Scan"
-        ></Button>
+    <RelativeLayout
+        android:id="@+id/activity1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+
+            android:paddingHorizontal="20dp"
+            android:layout_marginTop="-10dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="30dp"
+            android:id="@+id/user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/your_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="35dp"
+                android:text="Welcome home"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:textColor="@color/white"
+            android:id="@+id/start_activity_read"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@+id/user"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="27dp"
+            android:backgroundTint="@color/main"
+            app:cornerRadius="12dp"
+            android:onClick="onCLickNextStep"
+            android:text="Get started - Scan"
+            android:textAllCaps="false"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
