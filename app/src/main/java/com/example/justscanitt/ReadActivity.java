@@ -1,20 +1,15 @@
 package com.example.justscanitt;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.justscanitt.Class.ProductBio;
@@ -25,7 +20,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 public class ReadActivity extends AppCompatActivity {
@@ -47,8 +41,7 @@ public class ReadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_read);
         init();
         //getDataFromDataBase();
-        //getDataProductDataBase();
-        //firstBio();
+        getDataProductDataBase();
     }
     // Initialization of views and Firebase references
     private void init(){
@@ -72,68 +65,36 @@ public class ReadActivity extends AppCompatActivity {
     }
 
 
-    private void getDataProductDataBase() {
-        referenceProduct.addListenerForSingleValueEvent(new ValueEventListener() {
+    // Load product information
+    private void getDataProductDataBase(){
+        ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    handleProductSnapshot(snapshot);
-                } else {
-                    firstBio(); // Product not found
+                try {
+                    ProductBio productBio = snapshot.getValue(ProductBio.class);
+                    barCodeTextView.setText(barCode);
+                    companyName.setText(productBio.getCompanyName());
+                    productName.setText(productBio.getProductName());
+                    longText = productBio.getBio();
+                    bioText.setText(longText);
+                    // Load product image if exists
+                    if(!Objects.equals(productBio.getImageRef(), "noImage")) {
+                        Glide.with(getApplicationContext()).load(productBio.getImageRef()).into(productImageView);
+                    }
                 }
-            }
+                catch (Exception e){
+                    firstBio(); // If product is not found
+                }
 
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Optional: Log or handle
             }
-        });
+        };
+        referenceProduct.addValueEventListener(eventListener);
+
     }
 
-    private void handleProductSnapshot(DataSnapshot snapshot) {
-        ProductBio productBio = snapshot.getValue(ProductBio.class);
-
-        if (productBio == null) {
-            firstBio();
-            return;
-        }
-
-        barCodeTextView.setText(barCode);
-
-        // Basic product info
-        productName.setText(productBio.getProductName());
-        longText = productBio.getBio();
-        bioText.setText(longText);
-
-        // Load image
-        if (!"noImage".equals(productBio.getImageRef())) {
-            Glide.with(getApplicationContext())
-                    .load(productBio.getImageRef())
-                    .into(productImageView);
-        }
-
-        // Load company info
-        DatabaseReference userRef = FirebaseDatabase.getInstance()
-                .getReference("User")
-                .child(productBio.getCompanyEmail());
-
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                if (user != null) {
-                    companyName.setText(user.getName());
-                } else {
-                    companyName.setText("Unknown Company");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Optional error handling
-            }
-        });
-    }
 
     // If product bio is not found — prompt user to add one
     public void firstBio() {

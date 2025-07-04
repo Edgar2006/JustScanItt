@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.justscanitt.Class.User;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,6 +21,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FirebaseApp.initializeApp(this);
+
+        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("testNode");
+
+        dbRef.setValue("Hello Firebase").addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.d("FIREBASE", "✅ Data written successfully");
+            } else {
+                Log.e("FIREBASE", "❌ Write failed", task.getException());
+            }
+        });
+
+
         email = findViewById(R.id.emailInput);
         name = findViewById(R.id.nameInput);
         Log.e("1111111111111111111111","1");
@@ -35,7 +50,15 @@ public class MainActivity extends AppCompatActivity {
             User.EMAIL_CONVERT = emailToString;
             User.EMAIL = emailToString;
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("User").child(User.EMAIL_CONVERT);
-            reference.setValue(user);
+            reference.setValue(user).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Log.d("FIREBASE", "Data written successfully");
+                    Toast.makeText(this, "Data written successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Write failed", Toast.LENGTH_SHORT).show();
+                    Log.e("FIREBASE", "Write failed", task.getException());
+                }
+            });
 
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             startActivity(intent); // Start the activity
