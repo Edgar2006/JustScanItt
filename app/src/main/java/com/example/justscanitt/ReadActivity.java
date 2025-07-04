@@ -10,6 +10,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.justscanitt.Class.ProductBio;
+
 public class ReadActivity extends AppCompatActivity {
 
     @Override
@@ -22,7 +24,9 @@ public class ReadActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        firstBio();
     }
+
 
 
 
@@ -37,8 +41,8 @@ public class ReadActivity extends AppCompatActivity {
         builder.setTitle(title);  // заголовок
         builder.setMessage(message); // сообщение
         builder.setPositiveButton(button1String, (dialog, id) -> {
-  //          Intent intent = new Intent(ReadActivity.this, .class); class e petq u activty
-//            startActivity(intent);
+            Intent intent = new Intent(ReadActivity.this, AddProductActivity.class);
+            startActivity(intent);
         });
         builder.setNegativeButton(button2String, (dialog, id) -> finish());
         builder.setCancelable(false);
