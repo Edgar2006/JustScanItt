@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.justscanitt.Class.User;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -52,7 +53,7 @@ public class ScanActivity extends AppCompatActivity {
     public void push_activity(){
         Toast.makeText(this, "barCode", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(ScanActivity.this, ReadActivity.class);
-        intent.putExtra("barCode", barCode);
+        User.BARCODE = barCode;
         startActivity(intent);
     }
 

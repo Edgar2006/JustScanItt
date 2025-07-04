@@ -5,7 +5,9 @@ public class User {
     private String name;
     private String email;
 
+
     // Static fields (for use throughout the app)
+    public static String BARCODE;
     public static String NAME;
     public static String EMAIL;
     public static String EMAIL_CONVERT;
