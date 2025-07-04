@@ -8,6 +8,7 @@ firebaseFirestore = "25.1.4"
 firebaseFirestoreVersion = "24.4.4"
 glide = "4.16.0"
 googleFirebaseBom = "31.2.0"
+imagepickerVersion = "2.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -18,8 +19,10 @@ constraintlayout = "2.2.1"
 googleGmsGoogleServices = "4.4.3"
 firebaseDatabase = "21.0.0"
 firebaseConfig = "22.1.2"
+firebaseStorage = "21.0.2"
 
 [libraries]
+dhaval2404-imagepicker = { module = "com.github.dhaval2404:imagepicker", version.ref = "imagepickerVersion" }
 firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebaseAuth" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-bom-v3111 = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion" }
@@ -40,6 +43,7 @@ activity = { group = "androidx.activity", name = "activity", version.ref = "acti
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 firebase-config = { group = "com.google.firebase", name = "firebase-config", version.ref = "firebaseConfig" }
+google-firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
