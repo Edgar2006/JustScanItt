@@ -1,17 +1,22 @@
 package com.example.justscanitt;
 
 import android.content.Intent;
+import android.media.Rating;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.justscanitt.Class.Comment;
 import com.example.justscanitt.Class.ProductBio;
 import com.example.justscanitt.Class.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,10 +26,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ReadActivity extends AppCompatActivity {
     // UI components
+    private RecyclerView listView;
+    private CommentFragment viewAdapter;
+    private ArrayList<Comment> listData;
+
+    private RatingBar ratingBar;
+    private int ratingUserCount;
+    private float ratingSum;
 
     // Firebase references
     private DatabaseReference referenceComment,referenceProduct;
@@ -33,7 +48,7 @@ public class ReadActivity extends AppCompatActivity {
     private String longText,barCode;
     private TextView productName,bioText,companyName,barCodeTextView;
     private ImageView productImageView;
-
+    TextView ratingBarScore;
 
 
     @Override
@@ -41,8 +56,10 @@ public class ReadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read);
         init();
-        //getDataFromDataBase();
+        getDataFromDataBase();
         getDataProductDataBase();
+        viewAdapter.notifyDataSetChanged();
+
     }
     // Initialization of views and Firebase references
     private void init(){
@@ -57,14 +74,46 @@ public class ReadActivity extends AppCompatActivity {
         bioText = findViewById(R.id.ProductBio);
         productImageView = findViewById(R.id.ProductImages);
 
+        listView = findViewById(R.id.rec_view);
+        listData = new ArrayList<>();
+        viewAdapter = new CommentFragment(this,listData);
+        listView.setLayoutManager(new LinearLayoutManager(this));
+        listView.setAdapter(viewAdapter);
+
+    }
 
 
+    // Load user comments from Firebase
+    private void getDataFromDataBase(){
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(listData.size() > 0){
+                    listData.clear();
+                    ratingSum = 0;
+                    ratingUserCount = 0;
+                }
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    Comment messenger = ds.getValue(Comment.class);
+                    listData.add(messenger);
+                    ratingSum += messenger.getRatingBarScore();
+                    ratingUserCount++;
+                }
+                float rating_ =  ratingSum / ratingUserCount;
+                if(ratingUserCount == 0){
+                    rating_=0F;
+                }
+                ratingBar.setRating(rating_);
+                ratingBarScore.setText(ROUND(rating_) + "  (" + ratingUserCount + ')');
+                viewAdapter.notifyDataSetChanged();
+            }
 
-        FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
-        fabAdd.setOnClickListener(v -> {
-            Intent intent = new Intent(ReadActivity.this, NewCommentActivity.class);
-            startActivity(intent);
-        });
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        referenceComment.addValueEventListener(eventListener);
     }
 
 
@@ -123,9 +172,17 @@ public class ReadActivity extends AppCompatActivity {
     }
 
 
-    // Translate bio using Translations class
     public void onClickTranslate(View view) {
     }
 
 
+    public void onClickComment(View view) {
+        Intent intent = new Intent(ReadActivity.this, NewCommentActivity.class);
+        startActivity(intent);
+    }
+
+    public static String ROUND(Float v) {
+        BigDecimal bigDecimal = new BigDecimal(v).setScale(1, RoundingMode.DOWN);
+        return bigDecimal.toString();
+    }
 }
