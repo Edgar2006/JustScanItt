@@ -16,6 +16,9 @@ public class ProductBio {
                 '}';
     }
 
+    public ProductBio() {
+    }
+
     public ProductBio(String companyEmail, String companyName, String productName, String imageRef, String bio, String barCode) {
         this.companyEmail = companyEmail;
         this.companyName = companyName;

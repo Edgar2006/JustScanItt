@@ -60,7 +60,6 @@ public class ReadActivity extends AppCompatActivity {
 
     public void onClickComment(View view){
         Intent intent = new Intent(ReadActivity.this, NewCommentActivity.class);
-        intent.putExtra("barCode", barCode);
         startActivity(intent);
     }
 
@@ -70,21 +69,22 @@ public class ReadActivity extends AppCompatActivity {
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                try {
-                    ProductBio productBio = snapshot.getValue(ProductBio.class);
-                    barCodeTextView.setText(barCode);
-                    companyName.setText(productBio.getCompanyName());
-                    productName.setText(productBio.getProductName());
-                    longText = productBio.getBio();
-                    bioText.setText(longText);
-                    // Load product image if exists
-                    if(!Objects.equals(productBio.getImageRef(), "noImage")) {
-                        Glide.with(getApplicationContext()).load(productBio.getImageRef()).into(productImageView);
+                    if(snapshot.exists())
+                    {
+                        ProductBio productBio = snapshot.getValue(ProductBio.class);
+                        Toast.makeText(ReadActivity.this, productBio.toString(), Toast.LENGTH_SHORT).show();
+                        barCodeTextView.setText(barCode);
+                        companyName.setText(productBio.getCompanyName());
+                        productName.setText(productBio.getProductName());
+                        longText = productBio.getBio();
+                        bioText.setText(longText);
+                        // Load product image if exists
+                        if(!Objects.equals(productBio.getImageRef(), "noImage")) {
+                            Glide.with(getApplicationContext()).load(productBio.getImageRef()).into(productImageView);
+                        }
+                    } else {
+                        firstBio(); // If product is not found
                     }
-                }
-                catch (Exception e){
-                    firstBio(); // If product is not found
-                }
 
             }
             @Override
