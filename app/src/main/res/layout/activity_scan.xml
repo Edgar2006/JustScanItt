@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/scan_now"
-        android:layout_marginTop="125dp"
+        android:layout_marginTop="50dp"
         android:hint="Enter barcode manually"
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="12dp"
@@ -74,6 +74,7 @@
 
     <!-- Enhanced Scan Button -->
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/submitbtn"
         android:layout_width="150dp"
         android:layout_height="60dp"
         android:layout_below="@+id/manual_input"
@@ -90,5 +91,12 @@
         app:iconGravity="textStart"
         app:iconPadding="8dp"
         app:iconTint="@android:color/white" />
+
+    <ImageView
+        android:layout_width="387dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/submitbtn"
+        android:layout_marginTop="-40dp"
+        android:src="@drawable/bgimg2" />
 
 </RelativeLayout>
