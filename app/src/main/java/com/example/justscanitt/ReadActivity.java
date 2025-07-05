@@ -63,9 +63,12 @@ public class ReadActivity extends AppCompatActivity {
     }
     // Initialization of views and Firebase references
     private void init(){
+        ratingSum = 0;
+        ratingUserCount = 0;
         barCodeTextView = findViewById(R.id.Barcode);
         companyName = findViewById(R.id.CompanyName);
-
+        ratingBar = findViewById(R.id.rating_bar);
+        ratingBarScore = findViewById(R.id.rating_bar_score);
         barCode = User.BARCODE;
         // Firebase paths
         referenceComment = FirebaseDatabase.getInstance().getReference("Product").child(barCode);

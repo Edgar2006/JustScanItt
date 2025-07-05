@@ -93,10 +93,10 @@
                                 android:id="@+id/rating_bar_score"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
                                 android:text="4.5"
                                 android:textColor="@color/Second_color"
-                                android:textSize="14sp"
-                                android:layout_marginStart="6dp" />
+                                android:textSize="14sp" />
                         </LinearLayout>
 
                     </LinearLayout>

@@ -35,10 +35,7 @@ public class ScanActivity extends AppCompatActivity {
     public void onCLickRead(View view){
         // Get text from barcode input field
         String barCodeText = barCodeEditText.getText().toString();
-        if (barCode.isEmpty())
-        {
-            barCode = barCodeText;
-        }
+        barCode = barCodeText;
         push_activity();
     }
 
