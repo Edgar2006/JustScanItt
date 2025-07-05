@@ -1,189 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReadActivity">
+    tools:context=".ReadActivity"
+    android:background="@color/white">
 
+    <!-- Контент с прокруткой -->
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
-        <RelativeLayout
-            android:id="@+id/activity"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RelativeLayout
-                android:paddingHorizontal="10dp"
-                android:paddingTop="30dp"
-                android:paddingBottom="20dp"
-                android:id="@+id/bio"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Карточка с основным инфо -->
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/white"
-                android:background="@drawable/round_rect_shape">
+                android:layout_marginBottom="16dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="@color/white">
 
-                <RelativeLayout
-                    android:id="@+id/bio1"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="20dp"
-                    >
-
-                    <RelativeLayout
-                        android:id="@+id/barCodeView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ProductName"
-                        android:layout_marginTop="10dp"
-                        android:layout_toEndOf="@+id/ProductImages">
-
-                        <TextView
-                            android:id="@+id/product_barCodeText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Barcode"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/Barcode"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="7dp"
-                            android:layout_toEndOf="@+id/product_barCodeText"
-                            android:text=""
-                            android:textStyle="bold" />
-                    </RelativeLayout>
-
-                    <TextView
-                        android:id="@+id/ProductName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignStart="@+id/barCodeView"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="20dp"
-                        android:text="Product name"
-                        android:textStyle="bold" />
+                    android:orientation="horizontal"
+                    android:padding="16dp">
 
                     <ImageView
                         android:id="@+id/ProductImages"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:foreground="@drawable/corner1"
+                        android:layout_marginEnd="16dp"
                         android:scaleType="centerCrop"
+                        android:background="@drawable/corner1"
                         tools:srcCompat="@tools:sample/avatars" />
 
-
-                    <RatingBar
-                        android:id="@+id/rating_bar"
-                        style="?android:attr/ratingBarStyleSmall"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/barCodeView"
-                        android:layout_alignStart="@+id/ProductName"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="10dp"
-                        android:isIndicator="true"
-                        android:progressTint="@color/Gold"
-                        android:secondaryProgressTint="@color/zxing_transparent" />
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/rating_bar_score"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/rating_bar"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="0dp"
-                        android:layout_toEndOf="@+id/rating_bar"
-                        android:text="0.0"
-                        android:textColor="@color/Second_color"
-                        android:textSize="15dp" />
+                        <TextView
+                            android:id="@+id/ProductName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Product Name"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            android:textColor="@color/black" />
 
+                        <TextView
+                            android:id="@+id/Barcode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Barcode: 123456789"
+                            android:textSize="14sp"
+                            android:textColor="@color/grey" />
 
-                    <TextView
-                        android:id="@+id/CompanyName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/rating_bar"
-                        android:layout_alignStart="@+id/rating_bar"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="6dp"
-                        android:text="Company name" />
+                        <TextView
+                            android:id="@+id/CompanyName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Company Name"
+                            android:textSize="14sp"
+                            android:textColor="@color/grey"
+                            android:layout_marginTop="4dp"/>
 
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center_vertical">
 
+                            <RatingBar
+                                android:id="@+id/rating_bar"
+                                style="?android:attr/ratingBarStyleSmall"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:isIndicator="true"
+                                android:progressTint="@color/Gold" />
 
-                    <TextView
-                        android:id="@+id/descriptionBold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ProductImages"
-                        android:layout_marginTop="17dp"
-                        android:text="Description"
-                        android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/rating_bar_score"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="4.5"
+                                android:textColor="@color/Second_color"
+                                android:textSize="14sp"
+                                android:layout_marginStart="6dp" />
+                        </LinearLayout>
 
-                    <TextView
-                        android:textColor="@color/black"
-                        android:id="@+id/ProductBio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/descriptionBold"
-                        android:layout_marginTop="5dp"
-                        android:text="Lorem Ipsum is sr since the 1500s, um is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standawhen ao electronic larised  containing Lorem Ipsum passages, and more recently with desktop" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:onClick="onClickTranslate"
-                        android:id="@+id/translate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/ProductBio"
-                        android:layout_marginTop="7dp"
-                        android:text="See translation" />
+            <!-- Описание -->
+            <TextView
+                android:id="@+id/descriptionBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="6dp"/>
 
-                </RelativeLayout>
+            <TextView
+                android:id="@+id/ProductBio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product description here..."
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_marginBottom="12dp"/>
 
-                <RelativeLayout
-                    android:id="@+id/rating_layout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/bio1"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp">
+            <!-- Кнопка перевода -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/translate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="See Translation"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:onClick="onClickTranslate"
+                android:backgroundTint="@color/main"
+                app:cornerRadius="12dp"/>
 
-
-                </RelativeLayout>
-
-            </RelativeLayout>
-
+            <!-- Рейтинг и отзывы (заглушка) -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rec_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/bio"
-                android:layout_marginTop="0dp" />
-
-        </RelativeLayout>
+                android:layout_marginTop="24dp" />
+        </LinearLayout>
     </ScrollView>
+
+    <!-- FAB кнопка -->
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:textColor="@color/white"
         android:id="@+id/fabAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:backgroundTint="@color/main"
-        android:layout_margin="16dp"
-        android:onClick="onClickComment"
-        android:text="Add review"
+        android:layout_margin="20dp"
+        android:text="Add Review"
+        android:textColor="@color/white"
         android:textAllCaps="false"
         app:iconTint="@color/white"
-        />
+        android:onClick="onClickComment"
+        android:backgroundTint="@color/main"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
