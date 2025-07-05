@@ -19,7 +19,7 @@
             android:id="@+id/title_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rating"
+            android:text="Product Info"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -27,28 +27,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Рейтинг и число -->
-        <RatingBar
-            android:id="@+id/rating_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:stepSize="1.0"
-            android:layout_marginTop="12dp"
-            android:progressTint="@color/main"
-            app:layout_constraintTop_toBottomOf="@id/title_rating"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/rating_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0.0"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            android:textColor="@color/grey"
-            android:layout_marginStart="16dp"
-            app:layout_constraintStart_toEndOf="@id/rating_bar"
-            app:layout_constraintTop_toTopOf="@id/rating_bar" />
 
 
         <!-- Отзыв -->
@@ -60,10 +38,9 @@
             android:hint="Your product namem"
             app:counterEnabled="true"
             app:counterMaxLength="30"
-            app:layout_constraintTop_toBottomOf="@id/rating_bar"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="32dp">
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="85dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -80,7 +57,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Your product review"
+            android:hint="Your product description"
             app:counterEnabled="true"
             app:counterMaxLength="200"
             app:layout_constraintEnd_toEndOf="parent"

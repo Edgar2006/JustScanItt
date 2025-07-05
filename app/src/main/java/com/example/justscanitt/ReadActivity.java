@@ -177,6 +177,7 @@ public class ReadActivity extends AppCompatActivity {
 
 
     public void onClickTranslate(View view) {
+
     }
 
 

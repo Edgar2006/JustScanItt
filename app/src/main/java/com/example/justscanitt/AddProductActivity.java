@@ -99,7 +99,7 @@ public class AddProductActivity extends AppCompatActivity {
 
 
     // Save ProductBio to Firebase and open Read activity
-    public void OnClickSetImage(View view){
+    public void onClickChooseImage(View view){
 
         ImagePicker.with(this)
                 .crop()

@@ -18,7 +18,7 @@
             android:id="@+id/title_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rating"
+            android:text="Your Comment"
             android:textColor="@color/black"
             android:textSize="22sp"
             android:textStyle="bold"
@@ -36,18 +36,6 @@
             android:stepSize="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_rating" />
-
-        <TextView
-            android:id="@+id/rating_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="0.0"
-            android:textColor="@color/grey"
-            android:textSize="36sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/ratingBar"
-            app:layout_constraintTop_toTopOf="@id/ratingBar" />
 
         <!-- Отзыв -->
         <com.google.android.material.textfield.TextInputLayout
