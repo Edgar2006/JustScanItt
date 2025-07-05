@@ -17,6 +17,7 @@ import com.example.justscanitt.Class.Comment;
 import com.example.justscanitt.Class.User;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -27,7 +28,7 @@ import java.io.ByteArrayOutputStream;
 
 public class NewCommentActivity extends AppCompatActivity {
 
-    private EditText comment;
+    private TextInputLayout comment;
     private ImageView imageView;
     private Uri uploadUri;
     private StorageReference mStorageRef;
@@ -85,7 +86,7 @@ public class NewCommentActivity extends AppCompatActivity {
 
     // Save comment, rating, image URL to Firebase
     public void sendToData(){
-        String commentString = comment.getText().toString();
+        String commentString = comment.getEditText().getText().toString();
         if(!commentString.isEmpty()){
             // Create comment/message object
             Comment messenger;

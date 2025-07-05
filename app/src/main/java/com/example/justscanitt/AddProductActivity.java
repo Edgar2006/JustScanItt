@@ -17,6 +17,8 @@ import com.example.justscanitt.Class.ProductBio;
 import com.example.justscanitt.Class.User;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -27,7 +29,7 @@ import java.io.ByteArrayOutputStream;
 
 public class AddProductActivity extends AppCompatActivity {
 
-    public EditText productBioEditText, productNameEditText;
+    public TextInputLayout productBioEditText, productNameEditText;
     private ImageView imageView;
     private Uri uploadUri;
     private StorageReference mStorageRef;
@@ -79,8 +81,8 @@ public class AddProductActivity extends AppCompatActivity {
     }
     // Save data to Firebase after the image is uploaded
     private void sendToData(){
-        String productNameString = productNameEditText.getText().toString();
-        String bioLong = productBioEditText.getText().toString();
+        String productNameString = productNameEditText.getEditText().getText().toString();
+        String bioLong = productBioEditText.getEditText().getText().toString();
         // Make sure all fields are filled and image is uploaded
         if(!(productNameString.isEmpty() && bioLong.isEmpty() && uploadUri == null)){
             String uri = uploadUri.toString();

@@ -24,27 +24,39 @@
         tools:ignore="HardcodedText" />
 
     <!-- Manual Barcode Input -->
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/manual_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/view"
-        android:layout_marginTop="32dp"
+        android:layout_below="@+id/scan_now"
+        android:layout_marginTop="125dp"
         android:hint="Enter barcode manually"
-        android:inputType="number"
-        android:padding="16dp"
-        android:background="@android:drawable/editbox_background"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        app:boxBackgroundMode="outline"
+        app:boxCornerRadiusBottomEnd="12dp"
+        app:boxCornerRadiusBottomStart="12dp"
+        app:boxCornerRadiusTopEnd="12dp"
+        app:boxCornerRadiusTopStart="12dp"
+        app:boxStrokeColor="@color/main"
+        app:boxStrokeWidth="2dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/manual_input1"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:inputType="number"
+            android:padding="16dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="16sp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Enhanced Scan Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/scan_now"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/manual_input"
-        android:layout_marginTop="32dp"
+        android:layout_below="@id/view"
+        android:layout_marginTop="90dp"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:text="Scan Barcode Automatically"
@@ -62,15 +74,14 @@
 
     <!-- Enhanced Scan Button -->
     <com.google.android.material.button.MaterialButton
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="60dp"
-        android:layout_below="@+id/scan_now"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="0dp"
+        android:layout_below="@+id/manual_input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
         android:backgroundTint="@color/main"
         android:onClick="onCLickRead"
-        android:text="Scan"
+        android:text="Submit"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
         android:textSize="16sp"

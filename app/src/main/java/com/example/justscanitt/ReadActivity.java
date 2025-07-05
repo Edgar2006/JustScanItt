@@ -99,9 +99,10 @@ public class ReadActivity extends AppCompatActivity {
                     ratingSum += messenger.getRatingBarScore();
                     ratingUserCount++;
                 }
-                float rating_ =  ratingSum / ratingUserCount;
-                if(ratingUserCount == 0){
-                    rating_=0F;
+                float rating_ = 0F;
+                if(ratingUserCount != 0 && ratingSum != 0){
+                    rating_ =  ratingSum / ratingUserCount;
+
                 }
                 ratingBar.setRating(rating_);
                 ratingBarScore.setText(ROUND(rating_) + "  (" + ratingUserCount + ')');

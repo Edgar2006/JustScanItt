@@ -31,6 +31,19 @@
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/your_name"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="0dp"
+                android:layout_toEndOf="@+id/your_name"
+                android:text="user"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </RelativeLayout>
 
 
@@ -63,6 +76,14 @@
             android:text="Translate test"
             android:textAllCaps="false"
             android:textStyle="bold" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="-120dp"
+            android:src="@drawable/illustration_scan" />
 
 
     </RelativeLayout>

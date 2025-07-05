@@ -4,22 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.justscanitt.Class.User;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class ScanActivity extends AppCompatActivity {
 
     private String barCode = "";
-    private EditText barCodeEditText;
+    private TextInputEditText barCodeEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan);
-        barCodeEditText = findViewById(R.id.manual_input);
+        barCodeEditText = findViewById(R.id.manual_input1);
 
     }
     public void onCLickScanNow(View view){
