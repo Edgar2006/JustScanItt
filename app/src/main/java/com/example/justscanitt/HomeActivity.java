@@ -23,10 +23,6 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(HomeActivity.this, ScanActivity.class);
         startActivity(intent); // Start the activity
     }
-    public void onClickTranslate(View view){
-        Intent intent = new Intent(HomeActivity.this, TestTranslate.class);
-        startActivity(intent);
-    }
 
 
 }

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main2"
     tools:context=".ReadActivity">
 
     <!-- Контент с прокруткой -->
@@ -24,14 +25,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:cardElevation="4dp"
-                app:cardCornerRadius="12dp"
-                app:cardBackgroundColor="@color/white">
+                app:cardCornerRadius="30dp"
+                app:cardBackgroundColor="@color/main1">
 
+                <LinearLayout
+                    android:padding="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="16dp">
+                    >
 
                     <ImageView
                         android:id="@+id/ProductImages"
@@ -41,6 +47,8 @@
                         android:scaleType="centerCrop"
                         android:background="@drawable/corner1"
                         tools:srcCompat="@tools:sample/avatars" />
+
+
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -101,39 +109,49 @@
 
                     </LinearLayout>
                 </LinearLayout>
+
+                    <!-- Описание -->
+                    <TextView
+                        android:layout_marginTop="15dp"
+                        android:id="@+id/descriptionBold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Description"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="6dp"/>
+
+
+
+                    <TextView
+                        android:id="@+id/ProductBio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Product description here..."
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="12dp"/>
+
+                    <!-- Кнопка перевода -->
+                    <TextView
+                        android:onClick="onClickTranslate"
+                        android:id="@+id/translate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/comment"
+                        android:layout_marginTop="8dp"
+                        android:text="See translation"
+                        android:textColor="@color/main"
+                        android:textStyle="bold"
+                        android:textSize="14sp" />
+
+
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Описание -->
-            <TextView
-                android:id="@+id/descriptionBold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Description"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:layout_marginBottom="6dp"/>
 
-            <TextView
-                android:id="@+id/ProductBio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Product description here..."
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                android:layout_marginBottom="12dp"/>
 
-            <!-- Кнопка перевода -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/translate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="See Translation"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:onClick="onClickTranslate"
-                android:backgroundTint="@color/main"
-                app:cornerRadius="12dp"/>
 
             <!-- Рейтинг и отзывы (заглушка) -->
             <androidx.recyclerview.widget.RecyclerView
@@ -157,4 +175,6 @@
         app:iconTint="@color/white"
         android:onClick="onClickComment"
         android:backgroundTint="@color/main"/>
+
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
