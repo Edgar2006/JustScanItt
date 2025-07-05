@@ -27,7 +27,6 @@ import java.io.ByteArrayOutputStream;
 
 public class NewCommentActivity extends AppCompatActivity {
 
-    private String barCode;
     private EditText comment;
     private ImageView imageView;
     private Uri uploadUri;
@@ -50,10 +49,6 @@ public class NewCommentActivity extends AppCompatActivity {
         // Prepare Firebase Storage reference
         mStorageRef = FirebaseStorage.getInstance().getReference("ImageDB");
         // Get barcode passed from previous activity
-        Intent intent = getIntent();
-        if (intent != null) {
-            barCode = intent.getStringExtra("barCode");
-        }
         ratingBar = findViewById(R.id.ratingBar);
     }
     public void onClickSubmit(View view){
@@ -62,10 +57,10 @@ public class NewCommentActivity extends AppCompatActivity {
             Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
             // Compress image to JPEG with 50% quality
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG,50,byteArrayOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,10,byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();
             // Set storage path: barCode + user email
-            StorageReference mRef = mStorageRef.child(barCode + User.EMAIL_CONVERT);
+            StorageReference mRef = mStorageRef.child(User.BARCODE + User.EMAIL_CONVERT);
             // Upload image bytes
             final UploadTask uploadTask = mRef.putBytes(byteArray);
             // Get download URL after upload
@@ -83,8 +78,8 @@ public class NewCommentActivity extends AppCompatActivity {
     public void onClickChooseImage(View view){
         ImagePicker.with(this)
                 .crop()            //Crop image(Optional), Check Customization for more option
-                .compress(1024)      //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                .compress(256)      //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(256, 256)  //Final image resolution will be less than 1080 x 1080(Optional)
                 .start();
     }
 
@@ -100,11 +95,10 @@ public class NewCommentActivity extends AppCompatActivity {
                 messenger.setImageRef(uploadUri.toString());
             }
             // Save message to product database
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Product").child(barCode).child(User.EMAIL_CONVERT);
+            DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Product").child(User.BARCODE).child(User.EMAIL_CONVERT);
             reference.setValue(messenger);
             // Show success and go to Read activity
             Intent intent = new Intent(NewCommentActivity.this, ReadActivity.class);
-            intent.putExtra("barCode", barCode);
             startActivity(intent);
             finish(); // Close current screen
         }

@@ -62,7 +62,7 @@ public class AddProductActivity extends AppCompatActivity {
             Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
             // Compress the image to reduce size
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG,25,byteArrayOutputStream);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,10,byteArrayOutputStream);
             byte[] byteArray = byteArrayOutputStream.toByteArray();
             // Upload the image using the barcode as filename
             StorageReference mRef = mStorageRef.child(User.BARCODE);
@@ -101,8 +101,8 @@ public class AddProductActivity extends AppCompatActivity {
 
         ImagePicker.with(this)
                 .crop()
-                .compress(1024)
-                .maxResultSize(512, 512)
+                .compress(256)
+                .maxResultSize(256, 256)
                 .start();
     }
 

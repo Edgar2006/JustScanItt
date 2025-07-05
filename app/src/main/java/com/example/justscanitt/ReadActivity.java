@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.justscanitt.Class.ProductBio;
 import com.example.justscanitt.Class.User;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,12 +57,16 @@ public class ReadActivity extends AppCompatActivity {
         bioText = findViewById(R.id.ProductBio);
         productImageView = findViewById(R.id.ProductImages);
 
+
+
+
+        FloatingActionButton fabAdd = findViewById(R.id.fabAdd);
+        fabAdd.setOnClickListener(v -> {
+            Intent intent = new Intent(ReadActivity.this, NewCommentActivity.class);
+            startActivity(intent);
+        });
     }
 
-    public void onClickComment(View view){
-        Intent intent = new Intent(ReadActivity.this, NewCommentActivity.class);
-        startActivity(intent);
-    }
 
 
     // Load product information
