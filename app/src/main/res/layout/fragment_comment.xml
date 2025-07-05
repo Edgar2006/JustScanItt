@@ -25,16 +25,17 @@
         android:foreground="@drawable/corner1"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/image_data_base"
-        android:layout_alignTop="@id/image_data_base"
-        android:text="Soonershik"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/image_data_base"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="80dp"
+            android:text="Soonershik"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
     <RatingBar
         android:id="@+id/rating_bar"
@@ -61,15 +62,15 @@
         android:textStyle="bold" />
 
     <!-- Комментарий -->
-    <TextView
-        android:id="@+id/comment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/image_data_base"
-        android:layout_marginTop="12dp"
-        android:text="This product is great, helped me a lot!"
-        android:textSize="15sp"
-        android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rating_bar"
+            android:layout_marginTop="30dp"
+            android:text="This product is great, helped me a lot!"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
 
     <!-- Перевод -->
     <TextView
