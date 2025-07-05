@@ -1,9 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
+    <!-- Base application theme -->
     <style name="Base.Theme.JustScanItt" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/main</item>
+        <item name="colorPrimaryVariant">@color/main1</item>
+        <item name="colorOnPrimary">@color/main2</item>
+
+        <!-- Optional: Accent or secondary colors -->
+
     </style>
 
+    <!-- App theme -->
     <style name="Theme.JustScanItt" parent="Base.Theme.JustScanItt" />
+
 </resources>
