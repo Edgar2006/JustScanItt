@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
     tools:context=".ScanActivity"
     android:padding="24dp">
 
@@ -75,7 +74,7 @@
     <!-- Enhanced Scan Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/submitbtn"
-        android:layout_width="150dp"
+        android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_below="@+id/manual_input"
         android:layout_centerHorizontal="true"

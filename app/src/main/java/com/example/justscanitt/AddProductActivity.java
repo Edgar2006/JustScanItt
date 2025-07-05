@@ -39,9 +39,9 @@ public class AddProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_add_product);
-        productNameEditText = findViewById(R.id.newProductName);
-        productBioEditText = findViewById(R.id.newProductBio);
-        imageView = findViewById(R.id.imageView);
+        productNameEditText = findViewById(R.id.ProductName);
+        productBioEditText = findViewById(R.id.comment);
+        imageView = findViewById(R.id.comment_image);
         mStorageRef = FirebaseStorage.getInstance().getReference("ImageProduct");
         // Get data passed from the previous activity
         Intent intent = getIntent();
@@ -114,9 +114,4 @@ public class AddProductActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Glide.with(getApplicationContext()).load(data.getData()).into(imageView);
     }
-
-
-
-
-
 }

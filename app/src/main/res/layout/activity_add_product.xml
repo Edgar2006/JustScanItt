@@ -120,24 +120,30 @@
             app:layout_constraintTop_toBottomOf="@id/add_photo"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <!-- Кнопка -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/submit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="28dp"
+            android:backgroundTint="@color/main"
+            android:onClick="onClickSubmit"
             android:text="Save"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="16dp"
-            android:backgroundTint="@color/main"
             app:cornerRadius="16dp"
-            android:onClick="onClickSubmit"
-            app:layout_constraintTop_toBottomOf="@id/comment_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconTint="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="24dp" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
 </androidx.core.widget.NestedScrollView>

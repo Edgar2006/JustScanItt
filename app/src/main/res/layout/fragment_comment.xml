@@ -6,7 +6,6 @@
     android:padding="16dp"
     android:layout_marginVertical="8dp"
     android:layout_marginHorizontal="20dp"
-    android:background="@drawable/round_rect_shape"
     android:backgroundTint="@color/white">
 
     <!-- Верхняя часть: имя, фото, рейтинг -->

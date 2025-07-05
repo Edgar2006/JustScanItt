@@ -1,0 +1,35 @@
+<!-- res/drawable/custom_ratingbar.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Unfilled stars -->
+    <item android:id="@android:id/background">
+        <vector
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24"
+            android:tint="#CCCCCC"
+            android:drawable="@drawable/star_24" />
+    </item>
+
+    <!-- Half progress (optional) -->
+    <item android:id="@android:id/secondaryProgress">
+        <vector
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24"
+            android:tint="#AAAAAA"
+            android:drawable="@drawable/star_24" />
+    </item>
+
+    <!-- Filled stars -->
+    <item android:id="@android:id/progress">
+        <vector
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24"
+            android:tint="#FFD700"
+            android:drawable="@drawable/star_24" />
+    </item>
+</layer-list>
