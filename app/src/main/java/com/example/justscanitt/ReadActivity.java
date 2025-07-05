@@ -25,6 +25,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.mlkit.nl.languageid.LanguageIdentification;
+import com.google.mlkit.nl.languageid.LanguageIdentifier;
+import com.google.mlkit.nl.translate.TranslateLanguage;
+import com.google.mlkit.nl.translate.Translation;
+import com.google.mlkit.nl.translate.Translator;
+import com.google.mlkit.nl.translate.TranslatorOptions;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -177,6 +183,39 @@ public class ReadActivity extends AppCompatActivity {
 
 
     public void onClickTranslate(View view) {
+        String originalText = bioText.getText().toString();
+            LanguageIdentifier languageIdentifier = LanguageIdentification.getClient();
+
+            languageIdentifier.identifyLanguage(originalText)
+                    .addOnSuccessListener(languageCode -> {
+                        if (languageCode.equals("und")) {
+                            Toast.makeText(this, "Cannot identify language", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // Now translate from detected language to English
+                            TranslatorOptions options = new TranslatorOptions.Builder()
+                                    .setSourceLanguage(languageCode)
+                                    .setTargetLanguage(TranslateLanguage.ENGLISH)
+                                    .build();
+
+                            final Translator translator = Translation.getClient(options);
+
+                            translator.downloadModelIfNeeded()
+                                    .addOnSuccessListener(unused ->
+                                            translator.translate(originalText)
+                                                    .addOnSuccessListener(translatedText -> {
+                                                        bioText.setText(translatedText);
+                                                    })
+                                                    .addOnFailureListener(e -> {
+                                                        Toast.makeText(this, "Translation failed", Toast.LENGTH_SHORT).show();
+                                                    }))
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(this, "Model download failed", Toast.LENGTH_SHORT).show();
+                                    });
+                        }
+                    })
+                    .addOnFailureListener(
+                            e -> Toast.makeText(this, "Language detection failed", Toast.LENGTH_SHORT).show()
+                    );
 
     }
 

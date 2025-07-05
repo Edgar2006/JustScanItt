@@ -11,10 +11,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.justscanitt.Class.Comment;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.mlkit.nl.languageid.LanguageIdentification;
+import com.google.mlkit.nl.languageid.LanguageIdentifier;
+import com.google.mlkit.nl.translate.TranslateLanguage;
+import com.google.mlkit.nl.translate.Translation;
+import com.google.mlkit.nl.translate.Translator;
+import com.google.mlkit.nl.translate.TranslatorOptions;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -79,6 +86,42 @@ public class CommentFragment extends RecyclerView.Adapter<CommentFragment.ViewHo
             init(view);
             // When the translate button is clicked, trigger translation logic
             translateView.setOnClickListener(v -> {
+               
+                String originalText = comment.getText().toString();
+                LanguageIdentifier languageIdentifier = LanguageIdentification.getClient();
+
+                languageIdentifier.identifyLanguage(originalText)
+                        .addOnSuccessListener(languageCode -> {
+                            if (languageCode.equals("und")) {
+                                //Toast.makeText(this, "Cannot identify language", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Now translate from detected language to English
+                                TranslatorOptions options = new TranslatorOptions.Builder()
+                                        .setSourceLanguage(languageCode)
+                                        .setTargetLanguage(TranslateLanguage.ENGLISH)
+                                        .build();
+
+                                final Translator translator = Translation.getClient(options);
+
+                                translator.downloadModelIfNeeded()
+                                        .addOnSuccessListener(unused ->
+                                                translator.translate(originalText)
+                                                        .addOnSuccessListener(translatedText -> {
+                                                            comment.setText(translatedText);
+                                                        })
+                                                        .addOnFailureListener(e -> {
+                                                            //Toast.makeText(this, "Translation failed", Toast.LENGTH_SHORT).show();
+                                                        }))
+                                        .addOnFailureListener(e -> {
+                                            //Toast.makeText(this, "Model download failed", Toast.LENGTH_SHORT).show();
+                                        });
+                            }
+                        });
+/*                        .addOnFailureListener(
+                                e -> Toast.makeText(this, "Language detection failed", Toast.LENGTH_SHORT).show()
+                        );*/
+
+                
             });
 
         }
