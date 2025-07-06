@@ -69,4 +69,12 @@ public class ScanActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(this, HomeActivity.class);
+        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(a);
+
+    }
+
 }

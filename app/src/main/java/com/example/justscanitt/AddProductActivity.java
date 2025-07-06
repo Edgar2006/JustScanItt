@@ -114,4 +114,14 @@ public class AddProductActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         Glide.with(getApplicationContext()).load(data.getData()).into(imageView);
     }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(this, ReadActivity.class);
+        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(a);
+
+    }
+
 }

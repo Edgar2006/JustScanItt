@@ -227,4 +227,14 @@ public class ReadActivity extends AppCompatActivity {
         BigDecimal bigDecimal = new BigDecimal(v).setScale(1, RoundingMode.DOWN);
         return bigDecimal.toString();
     }
+
+
+    @Override
+    public void onBackPressed() {
+        Intent a = new Intent(this, ScanActivity.class);
+        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(a);
+
+    }
+
 }

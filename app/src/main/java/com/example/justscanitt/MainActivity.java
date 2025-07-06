@@ -23,24 +23,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FirebaseApp.initializeApp(this);
 
-        DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference("testNode");
-
-        dbRef.setValue("Hello Firebase").addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                Log.d("FIREBASE", "✅ Data written successfully");
-            } else {
-                Log.e("FIREBASE", "❌ Write failed", task.getException());
-            }
-        });
-
 
         email = findViewById(R.id.emailInput);
         name = findViewById(R.id.nameInput);
-        Log.e("1111111111111111111111","1");
     }
 
     public void onClickSignIn(View view){
         emailToString = email.getText().toString();
+        emailToString = emailToString.replace(".", "_");
         Log.e("T", "_"+emailToString + "T");
         nameToString = name.getText().toString();
         if (!emailToString.isEmpty() && !nameToString.isEmpty()) {
