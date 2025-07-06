@@ -134,6 +134,7 @@
 
                     <!-- Кнопка перевода -->
                     <TextView
+                        android:padding="10dp"
                         android:onClick="onClickTranslate"
                         android:id="@+id/translate"
                         android:layout_width="wrap_content"
@@ -143,7 +144,7 @@
                         android:text="See translation"
                         android:textColor="@color/main"
                         android:textStyle="bold"
-                        android:textSize="14sp" />
+                        android:textSize="16sp" />
 
 
                 </LinearLayout>
@@ -157,7 +158,9 @@
                 android:id="@+id/rec_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp" />
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="70dp"
+                />
         </LinearLayout>
     </ScrollView>
 
