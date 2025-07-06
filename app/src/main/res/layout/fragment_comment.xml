@@ -15,23 +15,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <!-- Верхняя часть: имя, фото, рейтинг -->
-    <ImageView
-        android:id="@+id/image_data_base"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginEnd="12dp"
-        android:scaleType="centerCrop"
-        android:foreground="@drawable/corner1"
-        tools:srcCompat="@tools:sample/avatars" />
-
+    <RelativeLayout
+        android:id="@+id/as"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/image_data_base"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:foreground="@drawable/corner1"
+            android:scaleType="centerCrop"
+            android:visibility="visible"
+            tools:srcCompat="@tools:sample/avatars" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@id/image_data_base"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="80dp"
             android:text="Soonershik"
             android:textColor="@color/black"
             android:textSize="16sp"
@@ -60,14 +66,16 @@
         android:textSize="14sp"
         android:textColor="@color/grey"
         android:textStyle="bold" />
-
+        </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
     <!-- Комментарий -->
         <TextView
             android:id="@+id/comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/rating_bar"
-            android:layout_marginTop="30dp"
+            android:layout_below="@+id/as"
+            android:layout_marginTop="7dp"
             android:text="This product is great, helped me a lot!"
             android:textColor="@color/black"
             android:textSize="15sp" />

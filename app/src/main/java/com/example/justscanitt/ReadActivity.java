@@ -136,7 +136,6 @@ public class ReadActivity extends AppCompatActivity {
                     if(snapshot.exists())
                     {
                         ProductBio productBio = snapshot.getValue(ProductBio.class);
-                        Toast.makeText(ReadActivity.this, productBio.toString(), Toast.LENGTH_SHORT).show();
                         barCodeTextView.setText(barCode);
                         companyName.setText(productBio.getCompanyName());
                         productName.setText(productBio.getProductName());
@@ -162,7 +161,6 @@ public class ReadActivity extends AppCompatActivity {
 
     // If product bio is not found — prompt user to add one
     public void firstBio() {
-        Toast.makeText(this, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", Toast.LENGTH_SHORT).show();
         String title = "Product is not found";
         String message = "You can add product";
         String button1String = "Add now";

@@ -60,7 +60,7 @@ public class CommentFragment extends RecyclerView.Adapter<CommentFragment.ViewHo
         }
         else{
             holder.imageDataBase.setVisibility(View.GONE);
-            holder.comment.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
+            //holder.comment.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
         }
     }
 
@@ -121,7 +121,7 @@ public class CommentFragment extends RecyclerView.Adapter<CommentFragment.ViewHo
                                 e -> Toast.makeText(this, "Language detection failed", Toast.LENGTH_SHORT).show()
                         );*/
 
-                
+
             });
 
         }
