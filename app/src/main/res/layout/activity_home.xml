@@ -62,21 +62,6 @@
             android:textAllCaps="false"
             android:textStyle="bold" />
 
-        <com.google.android.material.button.MaterialButton
-            android:textColor="@color/white"
-            android:id="@+id/translate_test"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_below="@+id/start_activity_read"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="27dp"
-            android:backgroundTint="@color/black"
-            app:cornerRadius="12dp"
-            android:onClick="onClickTranslate"
-            android:text="Translate test"
-            android:textAllCaps="false"
-            android:textStyle="bold" />
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
