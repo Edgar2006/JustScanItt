@@ -32,9 +32,6 @@
             android:name=".AddProductActivity"
             android:exported="false" />
         <activity
-            android:name=".TestTranslate"
-            android:exported="false" />
-        <activity
             android:name=".ReadActivity"
             android:exported="false" />
         <activity
